@@ -1,0 +1,86 @@
+<article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+  </div>
+  <div class="article-inner">
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+     <!--    >
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+        <! -->
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div>
+      <footer class="article-footer">
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_renren"></a>
+  <a href="http://www.jiathis.com/share?uid=1963900" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1407816065752321" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br/>
+
+      原创文章，转载请注明原地址：<a href="http://blog.sunnyxx.com">blog.sunnyxx.com</a>
+      <br/>
+      对博主有意思？新浪微博<a href="http://weibo.com/u/1364395395">@我就叫Sunny怎么了</a>
+      <br/>
+      or 微信搜索订阅号<b>sunnyxx</b>或扫下面的逗比狗
+      <br/>
+      <img src="http://ww4.sinaimg.cn/mw690/51530583jw1ejz2wnbt01j20by0by0tl.jpg" width="166">
+
+    </footer>
+    <footer class="article-footer">
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <% if (post.comments && config.disqus_shortname){ %>
+        <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link">Comments</a>
+      <% } %>
+      <%- partial('post/tag') %>
+    </footer>
+  </div>
+  <% if (!index){ %>
+    <%- partial('post/nav') %>
+  <% } %>
+</article>
+
+
+<% if (!index && post.comments){ %>
+<section id="comments">
+  <!-- Duoshuo Comment BEGIN -->
+  <div class="ds-thread"></div>
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"sunnyxx"};
+        (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] 
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+  </script>
+<!-- Duoshuo Comment END -->
+</section>
+<% } %>
